@@ -1,6 +1,30 @@
 <template name="hello">
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
+      <h5>Sintaxe da URL pro Iframe</h5>
+      <code>
+        <p><b>Sintaxe:</b> http://[domínio]/aula/[idSala]/[nomeSala]/[tipoUsuario]/[idUsuario]/[nomeUsuario]/</p>
+        <b>Exemplo:</b> <a href="{{rootUrl}}aula/010203/Matem%C3%A1tica%20II/professor/040506/Jos%C3%A9%20da%20Silva/">
+          {{rootUrl}}aula/010203/Matemática II/professor/040506/José da Silva/
+        </a>
+      </code>
+      <br><br><br>
+
+      <h5>Resultado:</h5>
+      <ul>
+        <li><b>ID da Sala:</b> {{dadosDaAula.idSala}}</li>
+        <li><b>Nome da Sala:</b> {{dadosDaAula.nomeSala}}</li>
+        <li><b>Tipo de Usuário:</b> {{dadosDaAula.tipoUsuario}}</li>
+        <li><b>ID do Usuário:</b> {{dadosDaAula.idUsuario}}</li>
+        <li><b>Nome do Usuário:</b> {{dadosDaAula.nomeUsuario}}</li>
+      </ul>
+      <br>
+
+      <h5>Banco de Dados</h5>
+      <ul>
+        <li><strong>Usuário já cadastrado:</strong> NÃO</li>
+        <li><strong>Aula já Cadastrada:</strong> NÃO</li>
+      </ul>
       <form id="join-form" name="join-form">
         <div class="row join-info-group">
           <div class="col-sm hide">
@@ -17,7 +41,7 @@
           </div>
         </div>
 
-        <div class="button-group">
+        <div class="button-group hide">
           <button id="host-join" type="submit" class="btn btn-primary btn-sm">Entrar como Professor</button>
           <button id="audience-join" type="submit" class="btn btn-primary btn-sm">Entrar como Aluno</button>
           <button id="leave" type="button" class="btn btn-primary btn-sm" disabled>Sair</button>

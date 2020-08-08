@@ -3,6 +3,11 @@ import AgoraRTC from "agora-rtc-sdk-ng";
 import './hello.html';
 import './hello.scss';
 
+Meteor.subscribe('users');
+Meteor.subscribe('lessons');
+
+rootUrl = new ReactiveVar();
+
 var client; // Agora client
 var localTracks = {
   videoTrack: null,
@@ -22,6 +27,9 @@ Template.hello.onCreated(()=> {
 });
 
 Template.hello.onRendered(()=> {
+  if (FlowRouter.getRouteName() === 'sala-de-aula') {
+
+  }
   // the demo can auto join channel with params in url
   $(() => {
     var urlParams = new URL(location.href).searchParams;
@@ -95,7 +103,7 @@ Template.hello.onRendered(()=> {
       $("#local-player-name").text(`localTrack(${options.uid})`);
       // publish local tracks to channel
       await client.publish(Object.values(localTracks));
-      console.log("publish success");
+      // console.log("publish success");
     }
   }
 
@@ -120,14 +128,14 @@ Template.hello.onRendered(()=> {
     $("#host-join").attr("disabled", false);
     $("#audience-join").attr("disabled", false);
     $("#leave").attr("disabled", true);
-    console.log("client leaves channel success");
+    // console.log("client leaves channel success");
   }
 
   async function subscribe(user, mediaType) {
     const uid = user.uid;
     // subscribe to a remote user
     await client.subscribe(user, mediaType);
-    console.log("subscribe success");
+    // console.log("subscribe success");
     if (mediaType === 'video') {
       const player = $(`
         <div id="player-wrapper-${uid}">
@@ -157,6 +165,22 @@ Template.hello.onRendered(()=> {
   });
 
   Template.hello.helpers({
+    rootUrl() {
+      Meteor.call('get.url', (err, res)=> {
+        rootUrl.set(res);
+      });
+      return rootUrl.get();
+    },
+
+    dadosDaAula() {
+      return {
+        idSala: FlowRouter.getParam('idSala'),
+        nomeSala: FlowRouter.getParam('nomeSala'),
+        tipoUsuario: FlowRouter.getParam('tipoUsuario'),
+        idUsuario: FlowRouter.getParam('idUsuario'),
+        nomeUsuario: FlowRouter.getParam('nomeUsuario')
+      }
+    }
   });
 
   Template.hello.events({
