@@ -1,9 +1,15 @@
 <template name="hello">
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <h3>{{dadosDaAula.tipoUsuario}}</h3>
-      <h5>Sintaxe da URL pro Iframe</h5>
-      <code>
+      <h3>
+        {{#if dadosDaAula.tipoUsuario}}
+        {{dadosDaAula.tipoUsuario}}
+        {{else}}
+        Teste de Integração
+        {{/if}}
+      </h3>
+      <code class="code">
+        <h5>Sintaxe da URL pro Iframe</h5>
         <p><b>Sintaxe:</b> http://[domínio]/aula/[idSala]/[nomeSala]/[tipoUsuario]/[idUsuario]/[nomeUsuario]/</p>
         <p>
           <b>Exemplo Professor:</b> <a href="{{rootUrl}}aula/010203/Matem%C3%A1tica%20II/professor/040506/Jos%C3%A9%20da%20Silva/" target="_blank">
@@ -16,31 +22,34 @@
           </a>
         </p>
       </code>
-      <br><br><br>
-
-      <h5>Resultado:</h5>
-      <ul>
-        <li><b>ID da Sala:</b> {{dadosDaAula.idSala}}</li>
-        <li><b>Nome da Sala:</b> {{dadosDaAula.nomeSala}}</li>
-        <li><b>Tipo de Usuário:</b> <big>{{dadosDaAula.tipoUsuario}}</big></li>
-        <li><b>ID do Usuário:</b> {{dadosDaAula.idUsuario}}</li>
-        <li><b>Nome do Usuário:</b> {{dadosDaAula.nomeUsuario}}</li>
-      </ul>
       <!-- <br>
-
       <h5>Banco de Dados</h5>
       <ul>
         <li><strong>Usuário já cadastrado:</strong> NÃO</li>
         <li><strong>Aula já Cadastrada:</strong> NÃO</li>
       </ul> -->
 
-      <div class="row video-group">
-        <div class="col">
-          <div id="local-player" class="player"></div>
+      <div class="row video-section">
+        <div class="col s12 l8">
+          <div class="row video-group">
+            <div class="col">
+              <div id="local-player" class="player"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <div id="remote-playerlist"></div>
+            </div>
+          </div>
         </div>
-        <div class="w-100"></div>
-        <div class="col">
-          <div id="remote-playerlist"></div>
+        <div class="col s12 l4">
+          <h5>Resultado:</h5>
+          <ul>
+            <li><b>ID da Sala:</b> {{dadosDaAula.idSala}}</li>
+            <li><b>Nome da Sala:</b> {{dadosDaAula.nomeSala}}</li>
+            <li><b>Tipo de Usuário:</b> <big>{{dadosDaAula.tipoUsuario}}</big></li>
+            <li><b>ID do Usuário:</b> {{dadosDaAula.idUsuario}}</li>
+            <li><b>Nome do Usuário:</b> {{dadosDaAula.nomeUsuario}}</li>
+          </ul>
         </div>
       </div>
     </div>

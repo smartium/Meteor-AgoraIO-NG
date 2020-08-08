@@ -28,6 +28,8 @@ Template.hello.onCreated(()=> {
 
 Template.hello.onRendered(()=> {
   if (FlowRouter.getRouteName() === 'sala-de-aula') {
+    $('code').hide();
+    $('.video-section').show();
     if (FlowRouter.getParam('tipoUsuario') === 'professor') {
       options.role = "host"
     }
