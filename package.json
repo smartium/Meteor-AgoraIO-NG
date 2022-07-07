@@ -13,7 +13,7 @@
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
     "meteor-node-stubs": "^1.0.0",
-    "moment": "^2.27.0"
+    "moment": "^2.29.4"
   },
   "meteor": {
     "mainModule": {
